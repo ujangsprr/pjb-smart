@@ -1,11 +1,12 @@
 const mqtt = require('mqtt');
+var eventEmitter = require('./eventEmiter')
 
 class MqttHandler {
   constructor() {
     this.mqttClient = null;
-    this.host = 'YOUR_HOST';
-    this.username = 'YOUR_USER'; // mqtt credentials if these are needed to connect
-    this.password = 'YOUR_PASSWORD';
+    this.host = 'mqtt://mqtt.dioty.co:1883';
+    this.username = 'ujangsprr@gmail.com'; // mqtt credentials if these are needed to connect
+    this.password = 'a1e2b36d';
   }
   
   connect() {
@@ -24,11 +25,12 @@ class MqttHandler {
     });
 
     // mqtt subscriptions
-    this.mqttClient.subscribe('mytopic', {qos: 0});
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/mytopic', {qos: 0});
 
     // When a message arrives, console.log it
     this.mqttClient.on('message', function (topic, message) {
-      console.log(message.toString());
+      // console.log(message.toString());
+      eventEmitter.emit('Message Data', message.toString())
     });
 
     this.mqttClient.on('close', () => {
@@ -38,7 +40,7 @@ class MqttHandler {
 
   // Sends a mqtt message to topic: mytopic
   sendMessage(message) {
-    this.mqttClient.publish('mytopic', message);
+    this.mqttClient.publish('/ujangsprr@gmail.com/mytopic', message);
   }
 }
 

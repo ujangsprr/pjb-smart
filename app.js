@@ -1,20 +1,39 @@
 var express = require("express");
-var bodyParser = require("body-parser");
+const http = require('http');
 var app = express();
+const server = http.createServer(app);
+const socketio = require('socket.io');
+const io = socketio(server);
+var bodyParser = require("body-parser");
 var mqttHandler = require('./mqtt_handler');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
-
+var eventEmitter = require('./eventEmiter')
 var mqttClient = new mqttHandler();
+
+app.use(express.static('client'));
+
 mqttClient.connect();
 
-// Routes
-app.post("/send-mqtt", function(req, res) {
-  mqttClient.sendMessage(req.body.message);
-  res.status(200).send("Message sent to mqtt");
+app.get("/", function(req, res){
+    res.sendFile(__dirname+"/client/index.html")
+})
+
+// Run when client connects
+io.on('connection', socket => {
+    console.log('New WS Connection...');
+
+    eventEmitter.on('Message Data', msg => {
+        socket.emit('message', msg);
+    })
 });
 
-var server = app.listen(3000, function () {
-    console.log("app running on port.", server.address().port);
-});
+
+
+// Routes
+// app.post("/send-mqtt", function(req, res) {
+//   mqttClient.sendMessage(req.body.message);
+//   res.status(200).send("Message sent to mqtt");
+// });
+
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
