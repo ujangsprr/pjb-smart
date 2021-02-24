@@ -25,12 +25,35 @@ class MqttHandler {
     });
 
     // mqtt subscriptions
-    this.mqttClient.subscribe('/ujangsprr@gmail.com/mytopic', {qos: 0});
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/data1');
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/data2');
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/data3');
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/data4');
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/data5');
+    this.mqttClient.subscribe('/ujangsprr@gmail.com/data6');
 
     // When a message arrives, console.log it
-    this.mqttClient.on('message', function (topic, message) {
+    this.mqttClient.on('message', function (topic, message, packet) {
       // console.log(message.toString());
-      eventEmitter.emit('Message Data', message.toString())
+      if(topic === '/ujangsprr@gmail.com/data1'){
+        eventEmitter.emit('Message Data 1', message.toString())
+        // console.log(message.toString());
+      }
+      if(topic === '/ujangsprr@gmail.com/data2'){
+        eventEmitter.emit('Message Data 2', message.toString())
+      }
+      if(topic === '/ujangsprr@gmail.com/data3'){
+        eventEmitter.emit('Message Data 3', message.toString())
+      }
+      if(topic === '/ujangsprr@gmail.com/data4'){
+        eventEmitter.emit('Message Data 4', message.toString())
+      }
+      if(topic === '/ujangsprr@gmail.com/data5'){
+        eventEmitter.emit('Message Data 5', message.toString())
+      }
+      if(topic === '/ujangsprr@gmail.com/data6'){
+        eventEmitter.emit('Message Data 6', message.toString())
+      }
     });
 
     this.mqttClient.on('close', () => {

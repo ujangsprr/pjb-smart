@@ -88,12 +88,13 @@ a {
 .chat-messages {
 	padding: 30px;
 	height: 500px;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 }
 
 .chat-messages .message {
 	padding: 10px;
 	margin-bottom: 15px;
+	height: 135px;
 	background-color: var(--light-color);
 	border-radius: 5px;
 	overflow-wrap: break-word;
@@ -187,4 +188,15 @@ a {
 	.chat-sidebar {
 		display: none;
 	}
+}
+
+.row {
+	display: flex;
+  }
+  
+/* Create two equal columns that sits next to each other */
+.column {
+flex: 30%;
+padding: 10px;
+height: 300px; /* Should be removed. Only for demonstration */
 }

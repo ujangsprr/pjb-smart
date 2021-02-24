@@ -21,19 +21,25 @@ app.get("/", function(req, res){
 io.on('connection', socket => {
     console.log('New WS Connection...');
 
-    eventEmitter.on('Message Data', msg => {
-        socket.emit('message', msg);
+    eventEmitter.on('Message Data 1', msg => {
+        socket.emit('message 1', msg);
+    })
+    eventEmitter.on('Message Data 2', msg => {
+        socket.emit('message 2', msg);
+    })
+    eventEmitter.on('Message Data 3', msg => {
+        socket.emit('message 3', msg);
+    })
+    eventEmitter.on('Message Data 4', msg => {
+        socket.emit('message 4', msg);
+    })
+    eventEmitter.on('Message Data 5', msg => {
+        socket.emit('message 5', msg);
+    })
+    eventEmitter.on('Message Data 6', msg => {
+        socket.emit('message 6', msg);
     })
 });
-
-
-
-// Routes
-// app.post("/send-mqtt", function(req, res) {
-//   mqttClient.sendMessage(req.body.message);
-//   res.status(200).send("Message sent to mqtt");
-// });
-
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="favicon.jpeg" rel="shortcut icon">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
@@ -10,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>PT PJB</title>
   </head>
   <body>
@@ -18,9 +20,41 @@
         <h1> PT PJB - Smart Monitoring</h1>
       </header>
       <main class="chat-main">
-        <div class="chat-sidebar"> Keterangan : <br> 1. Tegangan <br> 2. Arus
+        <div class="chat-sidebar"><br><br>
+          <img src="pjb.png" width="200" height="75"><br><br><br><br>
+          Keterangan : <br> 1. Tegangan <br> 2. Arus <br> 3. Power Faktor
+          <br> 4. Frequensi <br> 5. Power Aktif <br> 6. Power Reaktif
+          <br> 8. Power Appereance <br> 9. Power (I*v)
         </div>
-        <div class="chat-messages"></div>
+        <div class="chat-messages">
+          <div class="message">
+            <div class="row">
+              <div class="column">Power Meter 1<br>ID 101<br>Br 19200
+                <div id="time 1"></div>
+              </div>
+              <div class="column" id="msg 1"></div>
+              <div class="column" id="msg 2"></div>
+            </div> 
+          </div>
+          <div class="message">
+            <div class="row">
+              <div class="column">Power Meter 2<br>ID 102<br>Br 19200
+                <div id="time 2"></div>
+              </div>
+              <div class="column" id="msg 3"></div>
+              <div class="column" id="msg 4"></div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="row">
+              <div class="column">Power Meter 3<br>ID 103<br>Br 19200
+                <div id="time 3"></div>
+              </div>
+              <div class="column" id="msg 5"></div>
+              <div class="column" id="msg 6"></div>
+            </div>
+          </div>
+        </div>
       </main>
       <div class="chat-form-container">
       </div>
